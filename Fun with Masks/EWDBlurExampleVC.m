@@ -8,6 +8,7 @@
 
 #import "EWDBlurExampleVC.h"
 #import <QuartzCore/QuartzCore.h>
+#import "UIImage+ImageEffects.h"
 @interface EWDBlurExampleVC () <UIScrollViewDelegate>
 
 @property (nonatomic, strong) CALayer *maskLayer;
@@ -16,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *originalImageView;
 @property (weak, nonatomic) IBOutlet UIButton *testButton;
 @property (weak, nonatomic) IBOutlet UIImageView *blurView;
+
+@property (nonatomic, assign) BOOL isToggled;
 
 - (IBAction)toggleMask:(id)sender;
 
@@ -37,8 +40,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"pw_maze_white"]];
     [self setupBlurredImage];
-    
-    
+    self.isToggled = NO;
     
     //this is the frame we offset in scrollViewDidScroll
     self.buttonFrame = [self.view convertRect:self.testButton.frame toView:self.blurView];
@@ -72,32 +74,45 @@
 
 - (IBAction)toggleMask:(id)sender
 {
-    if (self.blurView.layer.mask)
-        self.blurView.layer.mask = nil;
-    else
-        self.blurView.layer.mask = self.maskLayer;
+    CALayer *blurLayer = [CALayer layer];
+    UIImage *maskImage = [UIImage imageNamed:@"Gradient.png"];
+    if (!self.isToggled) {
+        blurLayer = [self maskImageFrame:self.blurView.frame toImage:maskImage];
+    } else {
+        blurLayer = self.maskLayer;
+    }
+    self.isToggled = !self.isToggled;
+    self.blurView.layer.mask = blurLayer;
 }
 
 #pragma mark - Image Blurring
 
 - (void)setupBlurredImage
 {
-    UIImage *theImage = [UIImage imageNamed:@"sample_profile_bg.jpg"];
+    UIImage *theImage = [[UIImage imageNamed:@"sample_profile_bg.jpg"] applyLightEffect];
     
-    //create our blurred image
-    CIContext *context = [CIContext contextWithOptions:nil];
-    CIImage *inputImage = [CIImage imageWithCGImage:theImage.CGImage];
-    
-    //setting up Gaussian Blur (we could use one of many filters offered by Core Image)
-    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    [filter setValue:inputImage forKey:kCIInputImageKey];
-    [filter setValue:[NSNumber numberWithFloat:15.0f] forKey:@"inputRadius"];
-    CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    //CIGaussianBlur has a tendency to shrink the image a little, this ensures it matches up exactly to the bounds of our original image
-    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
+//    //create our blurred image
+//    CIContext *context = [CIContext contextWithOptions:nil];
+//    CIImage *inputImage = [CIImage imageWithCGImage:theImage.CGImage];
+//    
+//    //setting up Gaussian Blur (we could use one of many filters offered by Core Image)
+//    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+//    [filter setValue:inputImage forKey:kCIInputImageKey];
+//    [filter setValue:[NSNumber numberWithFloat:15.0f] forKey:@"inputRadius"];
+//    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+//    //CIGaussianBlur has a tendency to shrink the image a little, this ensures it matches up exactly to the bounds of our original image
+//    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
     
     //add our blurred image to the scrollview
-    self.blurView.image = [UIImage imageWithCGImage:cgImage];
+    self.blurView.image = theImage;
+}
+
+- (CALayer *)maskImageFrame:(CGRect)maskFrame toImage:(UIImage *)maskImage
+{
+    CALayer *maskLayer = [CALayer layer];
+    maskLayer.contents = (id)maskImage.CGImage;
+    maskLayer.frame = maskFrame;
+    return maskLayer;
 }
 
 #pragma mark - UIScrollViewDelegate

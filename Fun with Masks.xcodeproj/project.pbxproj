@@ -33,6 +33,9 @@
 		35B91C0216CA99F200E1A60D /* EWDAnimationExampleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B91C0116CA99F200E1A60D /* EWDAnimationExampleVC.xib */; };
 		35B91C0416CA9A0600E1A60D /* EWDBlurExampleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B91C0316CA9A0600E1A60D /* EWDBlurExampleVC.xib */; };
 		35B91C0616CA9A1900E1A60D /* EWDGradientExampleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 35B91C0516CA9A1900E1A60D /* EWDGradientExampleVC.xib */; };
+		F66C129E183F49D000B7BE44 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = F66C129D183F49D000B7BE44 /* UIImage+ImageEffects.m */; };
+		F66C12A0183F4B2400B7BE44 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F66C129F183F4B2400B7BE44 /* Accelerate.framework */; };
+		F6C09CFC18421A8E00B3EE9B /* Gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = F6C09CFB18421A8E00B3EE9B /* Gradient.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,10 @@
 		35B91C0116CA99F200E1A60D /* EWDAnimationExampleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EWDAnimationExampleVC.xib; sourceTree = "<group>"; };
 		35B91C0316CA9A0600E1A60D /* EWDBlurExampleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EWDBlurExampleVC.xib; sourceTree = "<group>"; };
 		35B91C0516CA9A1900E1A60D /* EWDGradientExampleVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EWDGradientExampleVC.xib; sourceTree = "<group>"; };
+		F66C129C183F49D000B7BE44 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		F66C129D183F49D000B7BE44 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
+		F66C129F183F4B2400B7BE44 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		F6C09CFB18421A8E00B3EE9B /* Gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Gradient.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F66C12A0183F4B2400B7BE44 /* Accelerate.framework in Frameworks */,
 				3501367C16C70B55006EF083 /* CoreImage.framework in Frameworks */,
 				357A116A16C5FE940045D888 /* QuartzCore.framework in Frameworks */,
 				357A112416C5E6B50045D888 /* UIKit.framework in Frameworks */,
@@ -107,6 +115,7 @@
 		357A112216C5E6B50045D888 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F66C129F183F4B2400B7BE44 /* Accelerate.framework */,
 				3501367B16C70B55006EF083 /* CoreImage.framework */,
 				357A116916C5FE940045D888 /* QuartzCore.framework */,
 				357A112316C5E6B50045D888 /* UIKit.framework */,
@@ -159,6 +168,8 @@
 		357A115B16C5E7650045D888 /* Blur */ = {
 			isa = PBXGroup;
 			children = (
+				F66C129C183F49D000B7BE44 /* UIImage+ImageEffects.h */,
+				F66C129D183F49D000B7BE44 /* UIImage+ImageEffects.m */,
 				357A114216C5E6B50045D888 /* EWDBlurExampleVC.h */,
 				357A114316C5E6B50045D888 /* EWDBlurExampleVC.m */,
 				35B91C0316CA9A0600E1A60D /* EWDBlurExampleVC.xib */,
@@ -181,6 +192,7 @@
 		357A116216C5F84D0045D888 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F6C09CFB18421A8E00B3EE9B /* Gradient.png */,
 				357A116B16C609020045D888 /* pw_maze_white.png */,
 				357A116D16C6090A0045D888 /* pw_maze_white_@2X.png */,
 				357A116716C5FBAA0045D888 /* jerusalempano2.jpg */,
@@ -243,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				357A112E16C5E6B50045D888 /* InfoPlist.strings in Resources */,
+				F6C09CFC18421A8E00B3EE9B /* Gradient.png in Resources */,
 				357A113616C5E6B50045D888 /* Default.png in Resources */,
 				357A113816C5E6B50045D888 /* Default@2x.png in Resources */,
 				357A113A16C5E6B50045D888 /* Default-568h@2x.png in Resources */,
@@ -270,6 +283,7 @@
 			files = (
 				357A113016C5E6B50045D888 /* main.m in Sources */,
 				357A113416C5E6B50045D888 /* EWDAppDelegate.m in Sources */,
+				F66C129E183F49D000B7BE44 /* UIImage+ImageEffects.m in Sources */,
 				357A113D16C5E6B50045D888 /* EWDGradientExampleVC.m in Sources */,
 				357A114416C5E6B50045D888 /* EWDBlurExampleVC.m in Sources */,
 				357A116016C5E7BC0045D888 /* EWDAnimationExampleVC.m in Sources */,
@@ -351,9 +365,14 @@
 		357A115816C5E6B50045D888 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fun with Masks/Fun with Masks-Prefix.pch";
 				INFOPLIST_FILE = "Fun with Masks/Fun with Masks-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -363,9 +382,14 @@
 		357A115916C5E6B50045D888 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Reveal.app/Contents/SharedSupport/iOS-Libraries",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fun with Masks/Fun with Masks-Prefix.pch";
 				INFOPLIST_FILE = "Fun with Masks/Fun with Masks-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
